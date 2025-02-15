@@ -26,7 +26,7 @@ for i in range(max_pages):
 #writer = csv.writer(sys.stdout)
 writer = csv.writer(open("markets.csv", "w", newline="", encoding="utf-8"))
 
-writer.writerow(["question", "market_slug", "end_date", "outcomes", "tags"])
+writer.writerow(["question", "market_slug", "end_date", "outcomes", "tags", "description"])
 
 for market in data_list:
     if not market["active"]:
@@ -40,11 +40,13 @@ for market in data_list:
 
     outcomes_str = "[" + ", ".join(token["outcome"] for token in market["tokens"]) + "]"
     tags_str = "[" + ", ".join(market["tags"]) + "]"
+    description = " ".join(market.get("description", "").split())
 
     writer.writerow([
         market["question"],
         market.get("market_slug", ""),
         market.get("end_date_iso", ""),
         outcomes_str,
-        tags_str
+        tags_str,
+        description
     ])
