@@ -38,15 +38,15 @@ for market in data_list:
     if "Politics" not in market["tags"]:
         continue
 
-    outcomes_str = "[" + ", ".join(token["outcome"] for token in market["tokens"]) + "]"
-    tags_str = "[" + ", ".join(market["tags"]) + "]"
+    outcomes = "[" + ", ".join(token["outcome"] for token in market["tokens"]) + "]"
+    tags = "[" + ", ".join(market["tags"]) + "]"
     description = " ".join(market.get("description", "").split())
 
     writer.writerow([
         market["question"],
         market.get("market_slug", ""),
         market.get("end_date_iso", ""),
-        outcomes_str,
-        tags_str,
+        outcomes,
+        tags,
         description
     ])
