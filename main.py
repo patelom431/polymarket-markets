@@ -35,7 +35,9 @@ for market in data_list:
         continue
     if market["archived"]:
         continue
-    if "Politics" not in market["tags"]:
+    if "Politics" not in market["tags"] and "Crypto" not in market["tags"]:
+        continue
+    if "German Election" in market["tags"]:
         continue
 
     outcomes = "[" + ", ".join(token["outcome"] for token in market["tokens"]) + "]"
