@@ -29,7 +29,7 @@ for i in range(max_pages):
 
 #writer = csv.writer(sys.stdout)
 writer = csv.writer(open("markets.csv", "w", newline="", encoding="utf-8"))
-writer.writerow(["question", "market_slug", "end_date", "outcomes", "tags", "description"])
+writer.writerow(["end_date", "question", "outcomes", "tags", "description", "condition_id"])
 
 sorted_data = [market for market in data_list if market.get("end_date_iso")]
 sorted_data.sort(key=lambda x: x["end_date_iso"])
@@ -56,10 +56,10 @@ for market in sorted_data:
     description = " ".join(market.get("description", "").split())
 
     writer.writerow([
-        market["question"],
-        market.get("market_slug", ""),
         market.get("end_date_iso", ""),
+        market["question"],
         outcomes,
         tags,
-        description
+        description,
+        market.get("condition_id", "")
     ])
