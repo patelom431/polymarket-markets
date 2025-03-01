@@ -13,4 +13,4 @@ env/
 ENV/
 
 # Data
-#*.csv
+*.csv
